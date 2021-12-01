@@ -1,0 +1,15 @@
+/home/murat/Documents/aoc2021/bin/Debug/net6.0/aoc2021
+/home/murat/Documents/aoc2021/bin/Debug/net6.0/aoc2021.deps.json
+/home/murat/Documents/aoc2021/bin/Debug/net6.0/aoc2021.runtimeconfig.json
+/home/murat/Documents/aoc2021/bin/Debug/net6.0/aoc2021.dll
+/home/murat/Documents/aoc2021/bin/Debug/net6.0/ref/aoc2021.dll
+/home/murat/Documents/aoc2021/bin/Debug/net6.0/aoc2021.pdb
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/aoc2021.csproj.AssemblyReference.cache
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/aoc2021.GeneratedMSBuildEditorConfig.editorconfig
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/aoc2021.AssemblyInfoInputs.cache
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/aoc2021.AssemblyInfo.cs
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/aoc2021.csproj.CoreCompileInputs.cache
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/aoc2021.dll
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/ref/aoc2021.dll
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/aoc2021.pdb
+/home/murat/Documents/aoc2021/obj/Debug/net6.0/aoc2021.genruntimeconfig.cache
