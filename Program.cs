@@ -10,7 +10,7 @@ namespace aoc2021
         public static void Main(string[] args)
         {
             
-            var c1= new D1();
+            var c1= new D2();
             int i =c1.Part1();
             Console.WriteLine("The Result for Part 1 is " + i);
             i =c1.Part2();
