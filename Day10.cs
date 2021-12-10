@@ -9,215 +9,284 @@ namespace aoc2021
     {
         string[] ReadMyInput()
         {
-        string text = File.ReadAllText(@"/home/murat/Documents/aoc2021/9.txt");
+        string text = File.ReadAllText(@"/home/murat/Documents/aoc2021/10.txt");
         string[] code = text.Split("\n");
         code = code.Take(code.Count() - 1).ToArray();
         return code;
         }
 
-public class coor
-{ 
-    public int x { get; set; }
-    public int y { get; set; }
-    public int val { get; set; }
-    public bool low { get; set; }
-    public int basin { get; set; }
-}
-
-
-
         public int Part1()
         {
+            int score = 0;
+            UInt64 iscore = 0;
+            List<string> incomplete = new List<string>();
+            List<UInt64> scoretable = new List<UInt64>();
+            string OpenT(string s)
+            {
+                while (true){
+                if(s=="")
+                {
+                    incomplete.Add(">");
+                    return "";
+                }    
+                else if(s.Contains("x")){
+                    return "x";
+                }
+                else if(s.Contains("i")){
+                    return "i";
+                }  
+                else if (s[0]=='}')
+                {
+                    score=score+1197;
+                    return "x";
+                }
+                else if (s[0]==']')
+                {
+                    score=score+57;
+                    return "x";
+                }
+                else if (s[0]==')')
+                {
+                    score=score+3;
+                    return "x";
+                }
+
+                else if (s[0]=='>')
+                {
+                    return s.Substring(1);
+                }
+                else if (s[0]=='{'){
+                    s=OpenC(s.Substring(1));    
+                }
+                else if (s[0]=='('){
+                    s=OpenP(s.Substring(1));    
+                }
+                else if (s[0]=='<'){
+                    s=OpenT(s.Substring(1));    
+                }
+                else if (s[0]=='['){
+                    s=OpenS(s.Substring(1));    
+                }
+                else{
+                    return "i";  
+                }
+
+                            }
+            }
+            string OpenS(string s)
+            {
+                while (true){
+                if(s=="")
+                {
+                    incomplete.Add("]");
+                    return "";
+                }    
+                else if(s.Contains("x")){
+                    return "x";
+                }
+                else if(s.Contains("i")){
+                    return "i";
+                }  
+                else if (s[0]=='}')
+                {
+                    score=score+1197;
+                    return "x";
+                }
+                else if (s[0]==')')
+                {
+                    score=score+3;
+                    return "x";
+                }
+                else if (s[0]=='>')
+                {
+                    score=score+25137;
+                    return "x";
+                }
+
+                else if (s[0]==']')
+                {
+                    return s.Substring(1);
+                }
+                else if (s[0]=='{'){
+                    s=OpenC(s.Substring(1));    
+                }
+                else if (s[0]=='('){
+                    s=OpenP(s.Substring(1));    
+                }
+                else if (s[0]=='<'){
+                    s=OpenT(s.Substring(1));    
+                }
+                else if (s[0]=='['){
+                    s=OpenS(s.Substring(1));    
+                }
+                else{
+                    return "i";  
+                }
+
+                            }
+            }
+            string OpenC(string s)
+            {
+                while (true){
+                if(s=="")
+                {
+                    incomplete.Add("}");
+                    return "";
+                }    
+                else if(s.Contains("x")){
+                    return "x";
+                }
+                else if(s.Contains("i")){
+                    return "i";
+                }  
+                else if (s[0]==')')
+                {
+                    score=score+3;
+                    return "x";
+                }
+                else if (s[0]==']')
+                {
+                    score=score+57;
+                    return "x";
+                }
+                else if (s[0]=='>')
+                {
+                    score=score+25137;
+                    return "x";
+                }
+
+                else if (s[0]=='}')
+                {
+                    return s.Substring(1);
+                }
+                else if (s[0]=='{'){
+                    s=OpenC(s.Substring(1));    
+                }
+                else if (s[0]=='('){
+                    s=OpenP(s.Substring(1));    
+                }
+                else if (s[0]=='<'){
+                    s=OpenT(s.Substring(1));    
+                }
+                else if (s[0]=='['){
+                    s=OpenS(s.Substring(1));    
+                }
+                else{
+                    return "i";  
+                }
+
+                            }
+            }
+            string OpenP(string s)
+            {
+                while (true){
+                if(s=="")
+                {
+                    incomplete.Add(")");
+                    return "";
+                }    
+                else if(s.Contains("x")){
+                    return "x";
+                }
+                else if(s.Contains("i")){
+                    return "i";
+                }    
+                else if (s[0]=='}')
+                {
+                    score=score+1197;
+                    return "x";
+                }
+                else if (s[0]==']')
+                {
+                    score=score+57;
+                    return "x";
+                }
+                else if (s[0]=='>')
+                {
+                    score=score+25137;
+                    return "x";
+                }
+
+                else if (s[0]==')')
+                {
+                    return s.Substring(1);
+                }
+                else if (s[0]=='{'){
+                    s=OpenC(s.Substring(1));    
+                }
+                else if (s[0]=='('){
+                    s=OpenP(s.Substring(1));    
+                }
+                else if (s[0]=='<'){
+                    s=OpenT(s.Substring(1));    
+                }
+                else if (s[0]=='['){
+                    s=OpenS(s.Substring(1));    
+                }
+                else{
+                    return "i";  
+                }
+
+                            }
+            }
         string[] input =ReadMyInput();
-        List<coor> coordinates = new List<coor>();
-        int width=100;
-        int height=100;
+int count=0; 
+    while(count<input.Length){
 
-        bool CheckUp(int x)
-        {
-            coor t =coordinates[x];
-            if(t.y==0){
-            return true;
-            }
-            else if (coordinates[x-width].val>coordinates[x].val)
-            {
-                return true;
-            }
-            return false;
+        string t = input[count];
+        //bunlarla başlamazsa ne olacağını da yaz
+        while(t!="" && !t.Contains("x") && !t.Contains("i")){
+        if(t[0]=='('){
+        t=OpenP(t.Substring(1));
         }
-        bool CheckDown(int x)
-        {
-            coor t =coordinates[x];
-            if(t.y==height-1){
-            return true;
-            }
-            else if (coordinates[x+width].val>coordinates[x].val)
-            {
-                return true;
-            }
-            return false;
+        else if(t[0]=='{'){
+        t=OpenC(t.Substring(1));
         }
-        bool CheckRight(int x)
-        {
-            coor t =coordinates[x];
-            if(t.x==width-1){
-            return true;
-            }
-            else if (coordinates[x+1].val>coordinates[x].val)
-            {
-                return true;
-            }
-            return false;
+        else if(t[0]=='['){
+        t=OpenS(t.Substring(1));
         }
-        bool CheckLeft(int x)
-        {
-            coor t =coordinates[x];
-            if(t.x==0){
-            return true;
-            }
-            else if (coordinates[x-1].val>coordinates[x].val)
-            {
-                return true;
-            }
-            return false;
+        else if(t[0]=='<'){
+        t=OpenT(t.Substring(1));
         }
+    }
+        foreach(string s in incomplete)
+        {
+            UInt64 sf=0;
+            if (s==")")
+            {
+                sf=1;
+            }
+            else if (s=="]")
+            {
+                sf=2;
+            }
+            else if (s=="}")
+            {
+                sf=3;
+            }
+            else if (s==">")
+            {
+                sf=4;
+            }
 
-
-        int i=0;
-        while(i<input.Length)
-        {
-            string temp=input[i];
-                int k=0;
-                    foreach(char c in temp)
-                    {
-                        coordinates.Add(new coor() {x=k, y=i, val=c-'0', low=false});
-                        k++;
-                    }
-            i++;    
+            iscore=iscore*5+sf;
         }
-        i=0;
-        int totalrisk=0;
-        foreach(coor c in coordinates)
-        {
-            if(CheckDown(i)&&CheckLeft(i)&&CheckRight(i)&&CheckUp(i))
-            {
-                totalrisk=totalrisk+c.val+1;
-            }
-            i++;
+        if(iscore!=0){
+        scoretable.Add(iscore);
         }
-
-        return totalrisk;
+        iscore=0;
+        incomplete.Clear();
+        count++;
+    }
+        scoretable.Sort();
+        int k=(scoretable.Count+1)/2;
+        Console.WriteLine("Incomplete Score is " + scoretable[k-1]);
+        return score;
         }
         public int Part2()
         {
-        string[] input =ReadMyInput();
-        List<coor> coordinates = new List<coor>();
-
-        int width=100;
-        int height=100;
-        int lastbasin=-1;
-
-        void CheckUp(int x, int bas)
-        {
-            coor t =coordinates[x];
-            if (t.y==0 || coordinates[x-width].val==9){
-            return;
-            }
-            else 
-            {
-                Flood(x-width,bas);
-            }
-
-        }
-        void CheckDown(int x, int bas)
-        {
-            coor t =coordinates[x];
-            if (t.y==height-1 || coordinates[x+width].val==9){
-            return;
-            }
-            else 
-            {
-                Flood(x+width,bas);
-            }
-        }
-        void CheckRight(int x, int bas)
-        {
-            coor t =coordinates[x];
-            if (t.x==width-1 || coordinates[x+1].val==9){
-            return;
-            }
-            else 
-            {
-                Flood(x+1,bas);
-            }
-        }
-        void CheckLeft(int x, int bas)
-        {
-            coor t =coordinates[x];
-            if (t.x==0 || coordinates[x-1].val==9){
-            return;
-            }
-            else 
-            {
-                Flood(x-1,bas);
-            }
-        }
-
-        void Flood(int x, int bas)
-        {
-            coordinates[x].basin=bas;
-            if(coordinates[x].x!=0 && coordinates[x-1].basin==-1)
-            {
-            CheckLeft(x,bas);
-            }
-            if(coordinates[x].x!=width-1 && coordinates[x+1].basin==-1)
-            {
-            CheckRight(x,bas);
-            }
-            if(coordinates[x].y!=0 && coordinates[x-width].basin==-1)
-            {
-            CheckUp(x,bas);
-            }
-            if(coordinates[x].y!=height-1 && coordinates[x+width].basin==-1)
-            {
-            CheckDown(x,bas);
-            }
-        }
-        int i=0;
-        while(i<input.Length)
-        {
-            string temp=input[i];
-                int k=0;
-                    foreach(char c in temp)
-                    {
-                        coordinates.Add(new coor() {x=k, y=i, val=c-'0', basin=-1, low=false});
-                        k++;
-                    }
-            i++;    
-        }
-        i=0;
-        while(i<coordinates.Count())
-        {
-            if(coordinates[i].basin==-1 && coordinates[i].val!=9)
-            {
-                lastbasin++;
-                Flood(i,lastbasin);
-            }
-            i++;
-        }
-        int[] basinsize = new int [lastbasin+1];
-        foreach(coor c in coordinates)
-        {
-            if (c.basin!=-1)
-            {
-            basinsize[c.basin]=basinsize[c.basin]+1;
-            }
-        }
-
-        Array.Sort(basinsize);
-        Array.Reverse(basinsize);
-
-        return basinsize[0]*basinsize[1]*basinsize[2];
+   
+        return 0;
     }
 }
 }
