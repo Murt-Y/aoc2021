@@ -14,11 +14,11 @@ namespace aoc2021
             sw.Start();
 
             
-            var c1= new D12();
-            int i =c1.Part1();
-            Console.WriteLine("The Result for Part 1 is " + i);
-            //i =c1.Part2();
-            //Console.WriteLine("The Result for Part 2 is " + i);
+            var c1= new D14();
+            //int i =c1.Part1();
+            //Console.WriteLine("The Result for Part 1 is " + i);
+            ulong i =c1.Part2();
+            Console.WriteLine("The Result for Part 2 is " + i);
             
             sw.Stop();
 
